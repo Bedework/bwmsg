@@ -1,0 +1,78 @@
+/* ********************************************************************
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+ */
+package org.bedework.messages;
+
+import org.bedework.util.config.ConfInfo;
+
+import java.util.List;
+
+/** These are the properties for bwmsg.
+ *
+ * <p>Annotated to allow use by mbeans
+ *
+ * @author douglm
+ *
+ */
+@ConfInfo(elementName = "bwmsg-properties")
+public interface BwmsgProperties {
+  /**
+   *
+   * @param val the list of properties
+   */
+  void setSyseventsProperties(final List<String> val);
+
+  /**
+   *
+   * @return String val
+   */
+  @ConfInfo(collectionElementName = "syseventsProperty" ,
+          elementType = "java.lang.String")
+  List<String> getSyseventsProperties();
+
+  /** Add a sysevents property
+   *
+   * @param name of property
+   * @param val of property
+   */
+  void addSyseventsProperty(final String name,
+                            final String val);
+
+  /** Get a sysevents property
+   *
+   * @param name of property
+   * @return value or null
+   */
+  @ConfInfo(dontSave = true)
+  String getSyseventsProperty(final String name);
+
+  /** Remove a sysevents property
+   *
+   * @param name of property
+   */
+  void removeSyseventsProperty(final String name);
+
+  /** Set a sysevents property
+   *
+   * @param name of property
+   * @param val of property
+   */
+  @ConfInfo(dontSave = true)
+  void setSyseventsProperty(final String name,
+                            final String val);
+}
