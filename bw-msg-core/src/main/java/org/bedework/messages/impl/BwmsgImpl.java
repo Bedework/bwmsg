@@ -23,6 +23,7 @@ import org.bedework.messages.Bwmsg;
 import org.bedework.messages.BwmsgAddress;
 import org.bedework.messages.BwmsgProperties;
 import org.bedework.messages.exc.NotifyException;
+import org.bedework.util.misc.Logged;
 import org.bedework.util.misc.Util;
 
 import org.apache.camel.CamelContext;
@@ -37,6 +38,7 @@ import java.io.StringReader;
 import java.net.URI;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import javax.jms.ConnectionFactory;
 import javax.naming.Context;
@@ -46,7 +48,7 @@ import javax.naming.InitialContext;
  *
  * @author Mike Douglass   douglm  rpi.edu
  */
-public class BwmsgImpl implements Bwmsg {
+public class BwmsgImpl extends Logged implements Bwmsg {
   private boolean debug;
 
   private transient Logger log;
@@ -146,13 +148,25 @@ public class BwmsgImpl implements Bwmsg {
     }
 
     try {
-      final ConnectionFactory connFactory;
+      ConnectionFactory connFactory = null;
 
       final Properties pr = getPr();
       final Context ctx = new InitialContext(pr);
 
-      connFactory = (ConnectionFactory)ctx.lookup(
-                        pr.getProperty("org.bedework.connection.factory.name"));
+      /* Wait around for the connection factory. We might get deployed before
+         JMS is up.
+       */
+      do {
+        try {
+          connFactory = (ConnectionFactory)ctx.lookup(
+                  pr.getProperty(
+                          "org.bedework.connection.factory.name"));
+        } catch (final Throwable t) {
+          // Assume no JMS yet
+          warn("No connection factory available - waiting");
+          TimeUnit.SECONDS.sleep(2);
+        }
+      } while (connFactory == null);
 
       context = new DefaultCamelContext();
       final JmsComponent jmsc = 
