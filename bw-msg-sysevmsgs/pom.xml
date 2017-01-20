@@ -27,15 +27,31 @@
 
   <parent>
     <groupId>org.bedework</groupId>
-    <artifactId>bwmsg</artifactId>
-    <version>4.0</version>
+    <artifactId>bw-msg</artifactId>
+    <version>4.0-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <groupId>org.bedework.bwmsg</groupId>
-  <artifactId>bwmsg-sysevmsgs</artifactId>
+  <artifactId>bw-msg-sysevmsgs</artifactId>
 
-  <name>Bedework notification service</name>
-  <description>Bedework notification service</description>
+  <name>Bedework messaging service - messages</name>
+  <description>Bedework messaging service - messages</description>
   <url>http://bedework.org/</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.bedework</groupId>
+      <artifactId>bw-util-misc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.bedework</groupId>
+      <artifactId>bw-access</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.bedework</groupId>
+      <artifactId>bw-ical4j-cl</artifactId>
+    </dependency>
+  </dependencies>
 </project>

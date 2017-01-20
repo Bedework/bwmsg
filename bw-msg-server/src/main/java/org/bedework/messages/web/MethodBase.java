@@ -18,8 +18,6 @@
 */
 package org.bedework.messages.web;
 
-import org.bedework.util.timezones.model.ErrorResponseType;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
