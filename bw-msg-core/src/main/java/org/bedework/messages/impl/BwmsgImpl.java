@@ -22,7 +22,7 @@ import org.bedework.messages.Addressable;
 import org.bedework.messages.Bwmsg;
 import org.bedework.messages.BwmsgAddress;
 import org.bedework.messages.BwmsgProperties;
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 import org.bedework.util.misc.Logged;
 import org.bedework.util.misc.Util;
 
@@ -124,23 +124,23 @@ public class BwmsgImpl extends Logged implements Bwmsg {
   }
 
   @Override
-  public BwmsgAddress fromUri(final URI uri) throws NotifyException {
+  public BwmsgAddress fromUri(final URI uri) throws MsgException {
     return null;
   }
 
   @Override
-  public BwmsgAddress fromPath(final String addr) throws NotifyException {
+  public BwmsgAddress fromPath(final String addr) throws MsgException {
     return null;
   }
 
   @Override
   public void bind(final BwmsgAddress address,
-                   final Addressable entity) throws NotifyException {
+                   final Addressable entity) throws MsgException {
 
   }
   
   @Override
-  public synchronized void start() throws NotifyException {
+  public synchronized void start() throws MsgException {
     debug = getLogger().isDebugEnabled();
 
     if (started) {
@@ -189,7 +189,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
       context.start();
       started = true;
     } catch (final Throwable t) {
-      throw new NotifyException(t);
+      throw new MsgException(t);
     }
   }
 
@@ -199,7 +199,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
   }
 
   @Override
-  public void stop() throws NotifyException {
+  public void stop() throws MsgException {
     if (!started) {
       return;
     }
@@ -208,7 +208,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
       context.stop();
       started = false;
     } catch (final Throwable t) {
-      throw new NotifyException(t);
+      throw new MsgException(t);
     }
   }
 
@@ -226,7 +226,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
    *                   Protected methods
    * ==================================================================== */
 
-  private Properties getPr() throws NotifyException {
+  private Properties getPr() throws MsgException {
     synchronized (lockit) {
       if (pr != null) {
         return pr;
@@ -238,7 +238,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
         pr = new Properties();
 
         if (Util.isEmpty(bnprops.getSyseventsProperties())) {
-          throw new NotifyException("No sysevents properties");
+          throw new MsgException("No sysevents properties");
         }
         
         final StringBuilder sb = new StringBuilder();
@@ -254,11 +254,11 @@ public class BwmsgImpl extends Logged implements Bwmsg {
         pr.load(new StringReader(sb.toString()));
 
         return pr;
-      } catch (final NotifyException cee) {
+      } catch (final MsgException cee) {
         throw cee;
       } catch (final Throwable t) {
         Logger.getLogger(BwmsgImpl.class).error("getEnv error", t);
-        throw new NotifyException(t.getMessage());
+        throw new MsgException(t.getMessage());
       }
     }
   }

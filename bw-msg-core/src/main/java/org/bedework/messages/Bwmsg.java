@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 import java.net.URI;
 
@@ -62,9 +62,9 @@ public interface Bwmsg {
    *
    * @param uri key
    * @return new BwmsgAddress
-   * @throws NotifyException on error
+   * @throws MsgException on error
    */
-  BwmsgAddress fromUri(URI uri) throws NotifyException;
+  BwmsgAddress fromUri(URI uri) throws MsgException;
 
   /** Create or return an address using the string value as a key. The address
    *  will not be bound to any entity. The parameter may be may be:<ul>
@@ -80,15 +80,15 @@ public interface Bwmsg {
    *
    * @param addr the address
    * @return new BwmsgAddress
-   * @throws NotifyException on error
+   * @throws MsgException on error
    */
-  BwmsgAddress fromPath(String addr) throws NotifyException;
+  BwmsgAddress fromPath(String addr) throws MsgException;
 
   /** Start the service
    *
-   * @throws NotifyException on error
+   * @throws MsgException on error
    */
-  void start() throws NotifyException;
+  void start() throws MsgException;
 
   /**
    * @return true if started
@@ -97,16 +97,16 @@ public interface Bwmsg {
 
   /** Stop the service
    *
-   * @throws NotifyException on error
+   * @throws MsgException on error
    */
-  void stop() throws NotifyException;
+  void stop() throws MsgException;
 
   /** Bind the entity to the address
    *
    * @param address the address
    * @param entity the entity
-   * @throws NotifyException if entity already bound or the address is bound to
+   * @throws MsgException if entity already bound or the address is bound to
    * another entity or is invalid.
    */
-  void bind(BwmsgAddress address, Addressable entity) throws NotifyException;
+  void bind(BwmsgAddress address, Addressable entity) throws MsgException;
 }

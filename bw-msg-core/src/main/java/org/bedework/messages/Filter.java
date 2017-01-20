@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 /** Filter, source, receiver are all subclasses of this type. They all have
  * inputs and outputs.
@@ -42,7 +42,7 @@ public interface Filter extends Addressable {
 
   /** Flush any pending messages.
    *
-   * @throws NotifyException
+   * @throws MsgException on error
    */
-  void flushPending() throws NotifyException;
+  void flushPending() throws MsgException;
 }

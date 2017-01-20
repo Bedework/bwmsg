@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 
 /** <p>Represents an entity which consumes notifications from a single input.
@@ -28,18 +28,18 @@ import org.bedework.messages.exc.NotifyException;
 public interface SingleConsumer extends Consumer {
   /**
    * @return current input channel
-   * @throws NotifyException
+   * @throws MsgException
    */
-  Channel getInput() throws NotifyException;
+  Channel getInput() throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void setInput(Channel c) throws NotifyException;
+  void setInput(Channel c) throws MsgException;
 
   /**
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void removeInput() throws NotifyException;
+  void removeInput() throws MsgException;
 }

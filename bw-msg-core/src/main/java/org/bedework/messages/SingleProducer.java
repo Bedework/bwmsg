@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 
 /** <p>Represents an entity which emits notifications on a single output.
@@ -28,18 +28,18 @@ import org.bedework.messages.exc.NotifyException;
 public interface SingleProducer extends Producer {
   /**
    * @return current output channel
-   * @throws NotifyException
+   * @throws MsgException
    */
-  Channel getOutput() throws NotifyException;
+  Channel getOutput() throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void setOutput(Channel c) throws NotifyException;
+  void setOutput(Channel c) throws MsgException;
 
   /**
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void removeOutput() throws NotifyException;
+  void removeOutput() throws MsgException;
 }

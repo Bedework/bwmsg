@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 import java.util.List;
 
@@ -30,19 +30,19 @@ import java.util.List;
 public interface MultiProducer extends Producer {
   /**
    * @return immutable list of current output channels
-   * @throws NotifyException
+   * @throws MsgException
    */
-  List<Channel> getOutputs() throws NotifyException;
+  List<Channel> getOutputs() throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void addOutput(Channel c) throws NotifyException;
+  void addOutput(Channel c) throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void removeOutput(Channel c) throws NotifyException;
+  void removeOutput(Channel c) throws MsgException;
 }

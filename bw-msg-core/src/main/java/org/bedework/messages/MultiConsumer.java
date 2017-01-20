@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 import java.util.List;
 
@@ -31,19 +31,19 @@ import java.util.List;
 public interface MultiConsumer extends Consumer {
   /**
    * @return immutable list of current input channels
-   * @throws NotifyException
+   * @throws MsgException
    */
-  List<Channel> getInputs() throws NotifyException;
+  List<Channel> getInputs() throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void addInput(Channel c) throws NotifyException;
+  void addInput(Channel c) throws MsgException;
 
   /**
    * @param c
-   * @throws NotifyException
+   * @throws MsgException
    */
-  void removeInput(Channel c) throws NotifyException;
+  void removeInput(Channel c) throws MsgException;
 }

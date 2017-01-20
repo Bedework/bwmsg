@@ -18,7 +18,7 @@
 */
 package org.bedework.messages;
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 
 /** <p>Sources, destinations and channels are addressed by objects implementing
@@ -50,9 +50,9 @@ public interface BwmsgAddress {
 
   /** Invalidate this address - i.e. remove it from the system.
    *
-   * @throws NotifyException if already invalid or entity state prevents unbind
+   * @throws MsgException if already invalid or entity state prevents unbind
    */
-  void invalidate() throws NotifyException;
+  void invalidate() throws MsgException;
 
   /** Get the bound entity if one exists.
    *

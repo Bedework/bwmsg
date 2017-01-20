@@ -19,7 +19,7 @@
 package org.bedework.messages;
 
 
-import org.bedework.messages.exc.NotifyException;
+import org.bedework.messages.exc.MsgException;
 
 import java.util.Iterator;
 
@@ -32,33 +32,33 @@ import java.util.Iterator;
 public interface Channel extends Addressable {
   /**
    * @return number of pending messages
-   * @throws NotifyException
+   * @throws MsgException on error
    */
-  Iterator<Notification> getNotifications() throws NotifyException;
+  Iterator<Notification> getNotifications() throws MsgException;
 
   /**
    * @return true if a message is available
-   * @throws NotifyException
+   * @throws MsgException on error
    */
-  boolean isAvailable() throws NotifyException;
+  boolean isAvailable() throws MsgException;
 
   /**
    * @return next Notification or null if interrupted
-   * @throws NotifyException
+   * @throws MsgException on error
    */
-  Notification getNext() throws NotifyException;
+  Notification getNext() throws MsgException;
 
   /**
    * @param maxWaitMillis maximum wait time or <0 indicating forever
    * @return next Notification or null if timedout
-   * @throws NotifyException
+   * @throws MsgException on error
    */
-  Notification getNext(long maxWaitMillis) throws NotifyException;
+  Notification getNext(long maxWaitMillis) throws MsgException;
 
   /** Post a notification
    *
-   * @param n
-   * @throws NotifyException
+   * @param n the notificatiob
+   * @throws MsgException on error
    */
-  void post(Notification n) throws NotifyException;
+  void post(Notification n) throws MsgException;
 }

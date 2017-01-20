@@ -23,11 +23,11 @@ import org.bedework.messages.NotifyDefs;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 
-/** Base exception thrown by exchange synch classes
+/** Base exception thrown by jms messaging classes
  *
- *   @author Mike Douglass   douglm@rpi.edu
+ *   @author Mike Douglass   Spherical Cow Group
  */
-public class NotifyException extends Throwable {
+public class MsgException extends Throwable {
   /** > 0 if set
    */
   int statusCode = -1;
@@ -39,15 +39,11 @@ public class NotifyException extends Throwable {
 
   /* Internal errors */
 
-  /**
-   */
-  public static String connectorNotStarted = "org.bedework.synch.error.connectorNotStarted";
-
   /** Constructor
    *
    * @param s
    */
-  public NotifyException(final String s) {
+  public MsgException(final String s) {
     super(s);
     if (statusCode < 0) {
       statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
@@ -58,7 +54,7 @@ public class NotifyException extends Throwable {
    *
    * @param t
    */
-  public NotifyException(final Throwable t) {
+  public MsgException(final Throwable t) {
     super(t);
     if (statusCode < 0) {
       statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
@@ -69,7 +65,7 @@ public class NotifyException extends Throwable {
    *
    * @param st
    */
-  public NotifyException(final int st) {
+  public MsgException(final int st) {
     statusCode = st;
   }
 
@@ -78,7 +74,7 @@ public class NotifyException extends Throwable {
    * @param st
    * @param msg
    */
-  public NotifyException(final int st, final String msg) {
+  public MsgException(final int st, final String msg) {
     super(msg);
     statusCode = st;
   }
@@ -87,7 +83,7 @@ public class NotifyException extends Throwable {
    *
    * @param errorTag
    */
-  public NotifyException(final QName errorTag) {
+  public MsgException(final QName errorTag) {
     statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
     this.errorTag = errorTag;
   }
@@ -97,7 +93,7 @@ public class NotifyException extends Throwable {
    * @param st
    * @param errorTag
    */
-  public NotifyException(final int st, final QName errorTag) {
+  public MsgException(final int st, final QName errorTag) {
     statusCode = st;
     this.errorTag = errorTag;
   }
@@ -108,7 +104,7 @@ public class NotifyException extends Throwable {
    * @param errorTag
    * @param msg
    */
-  public NotifyException(final int st, final QName errorTag, final String msg) {
+  public MsgException(final int st, final QName errorTag, final String msg) {
     super(msg);
     statusCode = st;
     this.errorTag = errorTag;
