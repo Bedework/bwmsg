@@ -25,9 +25,9 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.bedework</groupId>
+  <groupId>org.bedework.bw-msg</groupId>
   <artifactId>bw-msg</artifactId>
-  <version>4.0-SNAPSHOT</version>
+  <version>4.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Bedework messaging service</name>
