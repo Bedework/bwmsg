@@ -44,7 +44,15 @@ import javax.jms.ConnectionFactory;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-/**
+/** Note - As noted here: https://access.redhat.com/solutions/250253
+ * we should use the option mapJmsMessage to avoid deserialization of 
+ * messages - which is more expensive and requires all message classes 
+ * be on the classpath. For example:
+ * <pre>
+ *   from("jms:queue:myQueue?mapJmsMessage=false").
+ *   to("jms:queue:destQueue");
+ * </pre>
+ * 
  *
  * @author Mike Douglass   douglm  rpi.edu
  */
@@ -102,20 +110,23 @@ public class BwmsgImpl extends Logged implements Bwmsg {
       final JmsPropagationRequiredPolicy policy = 
               new JmsPropagationRequiredPolicy(transactionManager);
       
-      from(syseventsInQueue).policy(policy)
-      .multicast().parallelProcessing()
-      .to(syseventsLoggerQueue,
-          syseventsMonitorQueue,
-          syseventsCrawlerQueue,
-          syseventsChangesQueue,
-          "direct:schedIn",
-          "direct:schedOut");
+      from(syseventsInQueue + "?mapJmsMessage=false")
+              .policy(policy)
+              .multicast().parallelProcessing()
+              .to(syseventsLoggerQueue,
+                  syseventsMonitorQueue,
+                  syseventsCrawlerQueue,
+                  syseventsChangesQueue,
+                  "direct:schedIn",
+                  "direct:schedOut");
 
-      from("direct:schedIn").filter(simple("${header.inbox} == 'true' or ${header.scheduleEvent} == 'true'"))
-      .to(syseventsSchedInQueue);
+      from("direct:schedIn" + "?mapJmsMessage=false")
+              .filter(simple("${header.inbox} == 'true' or ${header.scheduleEvent} == 'true'"))
+              .to(syseventsSchedInQueue);
 
-      from("direct:schedOut").filter(simple("${header.outbox} == 'true'"))
-      .to(syseventsSchedOutQueue);
+      from("direct:schedOut" + "?mapJmsMessage=false")
+              .filter(simple("${header.outbox} == 'true'"))
+              .to(syseventsSchedOutQueue);
     }
   }
   
