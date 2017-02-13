@@ -120,11 +120,11 @@ public class BwmsgImpl extends Logged implements Bwmsg {
                   "direct:schedIn",
                   "direct:schedOut");
 
-      from("direct:schedIn" + "?mapJmsMessage=false")
+      from("direct:schedIn")
               .filter(simple("${header.inbox} == 'true' or ${header.scheduleEvent} == 'true'"))
               .to(syseventsSchedInQueue);
 
-      from("direct:schedOut" + "?mapJmsMessage=false")
+      from("direct:schedOut")
               .filter(simple("${header.outbox} == 'true'"))
               .to(syseventsSchedOutQueue);
     }
