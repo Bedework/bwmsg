@@ -41,9 +41,8 @@
     <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 
     <!-- Bedework Versions -->
-    <bw-access.version>4.0.1</bw-access.version>
-    <bw-util.version>4.0.11-SNAPSHOT</bw-util.version>
-    <ical4j.version>1.1.4-SNAPSHOT</ical4j.version>
+    <bw-access.version>4.0.2-SNAPSHOT</bw-access.version>
+    <bw-util.version>4.0.12-SNAPSHOT</bw-util.version>
 
     <!-- Third Party Library Versions -->
     <camel.version>2.18.1</camel.version>
@@ -141,12 +140,6 @@
         <groupId>org.bedework</groupId>
         <artifactId>bw-access</artifactId>
         <version>${bw-access.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.bedework</groupId>
-        <artifactId>bw-ical4j-cl</artifactId>
-        <version>${ical4j.version}</version>
       </dependency>
 
       <dependency>

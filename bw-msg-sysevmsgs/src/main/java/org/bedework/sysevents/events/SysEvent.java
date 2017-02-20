@@ -20,9 +20,7 @@ package org.bedework.sysevents.events;
 
 import org.bedework.access.AccessPrincipal;
 import org.bedework.util.misc.ToString;
-
-import net.fortuna.ical4j.model.DateTime;
-import net.fortuna.ical4j.model.property.LastModified;
+import org.bedework.util.misc.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -410,7 +408,7 @@ public class SysEvent implements SysEventBase, Comparable<SysEvent> {
    * Update last mod fields
    */
   private void updateDtstamp() {
-    setDtstamp(new LastModified(new DateTime(true)).getValue());
+    setDtstamp(Util.icalUTCTimestamp());
     setSequence(getSequence() + 1);
   }
 

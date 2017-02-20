@@ -48,10 +48,5 @@
       <groupId>org.bedework</groupId>
       <artifactId>bw-access</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>org.bedework</groupId>
-      <artifactId>bw-ical4j-cl</artifactId>
-    </dependency>
   </dependencies>
 </project>
