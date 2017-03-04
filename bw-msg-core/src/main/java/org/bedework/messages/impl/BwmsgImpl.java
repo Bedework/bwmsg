@@ -29,6 +29,7 @@ import org.bedework.util.misc.Util;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
+import org.apache.camel.component.jms.JmsMessageType;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spi.ExecutorServiceManager;
 import org.apache.camel.spi.ThreadPoolProfile;
@@ -111,6 +112,7 @@ public class BwmsgImpl extends Logged implements Bwmsg {
               new JmsPropagationRequiredPolicy(transactionManager);
       
       from(syseventsInQueue + "?mapJmsMessage=false")
+              .setHeader("CamelJmsMessageType", constant(JmsMessageType.Text))
               .policy(policy)
               .multicast().parallelProcessing()
               .to(syseventsLoggerQueue,
