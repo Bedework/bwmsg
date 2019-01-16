@@ -46,7 +46,7 @@
 
     <!-- Third Party Library Versions -->
     <camel.version>2.18.1</camel.version>
-    <jackson.version>2.3.1</jackson.version>
+    <jackson.version>2.9.8</jackson.version>
     <jta.version>1.1</jta.version>
     <servlet-api.version>2.5</servlet-api.version>
     <log4j.version>1.2.15</log4j.version>
