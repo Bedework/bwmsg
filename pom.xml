@@ -45,7 +45,7 @@
     <bw-util.version>4.0.12-SNAPSHOT</bw-util.version>
 
     <!-- Third Party Library Versions -->
-    <camel.version>2.18.2</camel.version>
+    <camel.version>3.3.0</camel.version>
     <jackson.version>2.9.8</jackson.version>
     <jta.version>1.1</jta.version>
     <servlet-api.version>2.5</servlet-api.version>
